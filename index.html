@@ -1,292 +1,266 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>JobSearch.Works - AI-Powered Job Search Agent</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
-      rel="stylesheet"
-    />
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
 
-      body {
-        font-family: "Inter", sans-serif;
-        overflow-x: hidden;
-        background: #0a0a0f;
-        color: #fff;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobSearch.Works - AI-Powered Job Search Agent</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@500;600;700&display=swap"
+    rel="stylesheet" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-      .font-display {
-        font-family: "Space Grotesk", sans-serif;
-      }
+    body {
+      font-family: "Inter", sans-serif;
+      overflow-x: hidden;
+      background: #0a0a0f;
+      color: #fff;
+    }
 
-      .gradient-text {
-        background: linear-gradient(
-          135deg,
+    .font-display {
+      font-family: "Space Grotesk", sans-serif;
+    }
+
+    .gradient-text {
+      background: linear-gradient(135deg,
           #667eea 0%,
           #764ba2 50%,
-          #f093fb 100%
-        );
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+          #f093fb 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gradient-bg {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+
+    .gradient-bg-2 {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glow {
+      box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+    }
+
+    @keyframes float {
+
+      0%,
+      100% {
+        transform: translateY(0px);
       }
 
-      .gradient-bg {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      50% {
+        transform: translateY(-20px);
       }
+    }
 
-      .gradient-bg-2 {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-      }
+    .float {
+      animation: float 6s ease-in-out infinite;
+    }
 
-      .glass {
-        background: rgba(255, 255, 255, 0.05);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-      }
-
-      .glow {
-        box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
-      }
-
-      @keyframes float {
-        0%,
-        100% {
-          transform: translateY(0px);
-        }
-        50% {
-          transform: translateY(-20px);
-        }
-      }
-
-      .float {
-        animation: float 6s ease-in-out infinite;
-      }
-
-      @keyframes slideIn {
-        from {
-          opacity: 0;
-          transform: translateY(30px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-
-      .slide-in {
-        animation: slideIn 0.8s ease-out forwards;
-      }
-
-      .hover-lift {
-        transition: all 0.3s ease;
-      }
-
-      .hover-lift:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
-      }
-
-      .nav-blur {
-        backdrop-filter: blur(12px);
-        background: rgba(10, 10, 15, 0.8);
-      }
-
-      .scroll-reveal {
+    @keyframes slideIn {
+      from {
         opacity: 0;
         transform: translateY(30px);
-        transition: all 0.6s ease;
       }
 
-      .scroll-reveal.active {
+      to {
         opacity: 1;
         transform: translateY(0);
       }
+    }
 
-      .bg-grid {
-        background-image: linear-gradient(
-            rgba(102, 126, 234, 0.1) 1px,
-            transparent 1px
-          ),
-          linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
-        background-size: 50px 50px;
-      }
+    .slide-in {
+      animation: slideIn 0.8s ease-out forwards;
+    }
 
-      .feature-card {
-        position: relative;
-        overflow: hidden;
-      }
+    .hover-lift {
+      transition: all 0.3s ease;
+    }
 
-      .feature-card::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(
-          90deg,
+    .hover-lift:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .nav-blur {
+      backdrop-filter: blur(12px);
+      background: rgba(10, 10, 15, 0.8);
+    }
+
+    .scroll-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.6s ease;
+    }
+
+    .scroll-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .bg-grid {
+      background-image: linear-gradient(rgba(102, 126, 234, 0.1) 1px,
+          transparent 1px),
+        linear-gradient(90deg, rgba(102, 126, 234, 0.1) 1px, transparent 1px);
+      background-size: 50px 50px;
+    }
+
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg,
           transparent,
           rgba(255, 255, 255, 0.1),
-          transparent
-        );
-        transition: left 0.5s;
-      }
+          transparent);
+      transition: left 0.5s;
+    }
 
-      .feature-card:hover::before {
-        left: 100%;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- Navigation -->
-    <nav class="fixed w-full z-50 nav-blur border-b border-gray-800">
-      <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center space-x-2">
-            <img src="logo.png" alt="JobSearch.Works Logo" class="h-10" />
-            <span class="font-display text-2xl font-bold"
-              >JobSearch<span class="gradient-text">.Works</span></span
-            >
-          </div>
-          <div class="hidden md:flex items-center space-x-8">
-            <a
-              href="#how-it-works"
-              class="text-gray-300 hover:text-white transition"
-              >How It Works</a
-            >
-            <a
-              href="#features"
-              class="text-gray-300 hover:text-white transition"
-              >Features</a
-            >
-            <a href="#pricing" class="text-gray-300 hover:text-white transition"
-              >Pricing</a
-            >
-            <a
-              href="https://app.jobsearch.works"
-              class="gradient-bg px-6 py-2 rounded-full font-semibold hover:opacity-90 transition"
-              >Login</a
-            >
-          </div>
-          <button class="md:hidden text-white">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
+    .feature-card:hover::before {
+      left: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="fixed w-full z-50 nav-blur border-b border-gray-800 bg-black/60 backdrop-blur">
+    <div class="max-w-7xl mx-auto px-6 py-4">
+      <div class="flex items-center justify-between">
+
+        <!-- Logo -->
+        <div class="flex items-center space-x-2">
+          <img src="logo.png" alt="JobSearch.Works Logo" class="h-10" />
+          <span class="font-display text-2xl font-bold">JobSearch<span class="gradient-text">.Works</span></span>
         </div>
-      </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section class="relative pt-32 pb-20 px-6 overflow-hidden bg-grid">
-      <div class="absolute top-0 left-0 w-full h-full">
-        <div
-          class="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 float"
-        ></div>
-        <div
-          class="absolute bottom-20 right-10 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 float"
-          style="animation-delay: -3s"
-        ></div>
-      </div>
+        <!-- Desktop Menu -->
+        <div class="hidden md:flex items-center space-x-8">
+          <a href="#how-it-works" class="text-gray-300 hover:text-white transition">How It Works</a>
+          <a href="#features" class="text-gray-300 hover:text-white transition">Features</a>
+          <a href="#pricing" class="text-gray-300 hover:text-white transition">Pricing</a>
+          <a href="https://app.jobsearch.works"
+            class="gradient-bg px-6 py-2 rounded-full font-semibold hover:opacity-90 transition">Login</a>
+        </div>
 
-      <div class="max-w-7xl mx-auto relative z-10">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <div class="slide-in">
-            <div class="inline-block glass px-4 py-2 rounded-full text-sm mb-6">
-              <span class="gradient-text font-semibold"
-                >🤖 AI-Powered Job Application Automation</span
-              >
+        <!-- Mobile Menu Button -->
+        <button id="menu-btn" class="md:hidden text-white">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-4 bg-black/80 backdrop-blur">
+      <a href="#how-it-works" class="block text-gray-300 hover:text-white transition">How It Works</a>
+      <a href="#features" class="block text-gray-300 hover:text-white transition">Features</a>
+      <a href="#pricing" class="block text-gray-300 hover:text-white transition">Pricing</a>
+      <a href="https://app.jobsearch.works"
+        class="block gradient-bg px-6 py-2 rounded-full font-semibold text-center hover:opacity-90 transition">Login</a>
+    </div>
+  </nav>
+
+  <script>
+    const btn = document.getElementById("menu-btn");
+    const menu = document.getElementById("mobile-menu");
+
+    btn.addEventListener("click", () => {
+      menu.classList.toggle("hidden");
+    });
+  </script>
+
+
+  <!-- Hero Section -->
+  <section class="relative pt-32 pb-20 px-6 overflow-hidden bg-grid">
+    <div class="absolute top-0 left-0 w-full h-full">
+      <div
+        class="absolute top-20 left-10 w-72 h-72 bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 float">
+      </div>
+      <div
+        class="absolute bottom-20 right-10 w-96 h-96 bg-pink-600 rounded-full mix-blend-screen filter blur-3xl opacity-20 float"
+        style="animation-delay: -3s"></div>
+    </div>
+
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="slide-in">
+          <div class="inline-block glass px-4 py-2 rounded-full text-sm mb-6">
+            <span class="gradient-text font-semibold">🤖 AI-Powered Job Application Automation</span>
+          </div>
+          <h1 class="font-display text-6xl lg:text-7xl font-bold leading-tight mb-6">
+            Your AI Agent<br />
+            <span class="gradient-text">Applies For You</span>
+          </h1>
+          <p class="text-xl text-gray-400 mb-8 leading-relaxed">
+            Stop spending hours on job applications. Our AI agent applies for
+            you, writes custom resumes, answers questions, and tracks
+            everything. Get your time back.
+          </p>
+          <div class="flex flex-wrap gap-4">
+            <a href="https://app.jobsearch.works"
+              class="gradient-bg px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition glow inline-block text-center">
+              Login to App
+            </a>
+            <a href="#how-it-works"
+              class="glass px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:bg-opacity-10 transition inline-block text-center">
+              Learn More
+            </a>
+          </div>
+          <div class="flex items-center gap-8 mt-12">
+            <div>
+              <div class="text-3xl font-bold gradient-text">80%+</div>
+              <div class="text-sm text-gray-500">Automation Rate</div>
             </div>
-            <h1
-              class="font-display text-6xl lg:text-7xl font-bold leading-tight mb-6"
-            >
-              Your AI Agent<br />
-              <span class="gradient-text">Applies For You</span>
-            </h1>
-            <p class="text-xl text-gray-400 mb-8 leading-relaxed">
-              Stop spending hours on job applications. Our AI agent applies for
-              you, writes custom resumes, answers questions, and tracks
-              everything. Get your time back.
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <a
-                href="https://app.jobsearch.works"
-                class="gradient-bg px-8 py-4 rounded-full font-bold text-lg hover:opacity-90 transition glow inline-block text-center"
-              >
-                Login to App
-              </a>
-              <a
-                href="#how-it-works"
-                class="glass px-8 py-4 rounded-full font-bold text-lg hover:bg-white hover:bg-opacity-10 transition inline-block text-center"
-              >
-                Learn More
-              </a>
+            <div>
+              <div class="text-3xl font-bold gradient-text">24/7</div>
+              <div class="text-sm text-gray-500">Agent Working</div>
             </div>
-            <div class="flex items-center gap-8 mt-12">
-              <div>
-                <div class="text-3xl font-bold gradient-text">80%+</div>
-                <div class="text-sm text-gray-500">Automation Rate</div>
-              </div>
-              <div>
-                <div class="text-3xl font-bold gradient-text">24/7</div>
-                <div class="text-sm text-gray-500">Agent Working</div>
-              </div>
-              <div>
-                <div class="text-3xl font-bold gradient-text">AI-Powered</div>
-                <div class="text-sm text-gray-500">Smart Applications</div>
-              </div>
+            <div>
+              <div class="text-3xl font-bold gradient-text">AI-Powered</div>
+              <div class="text-sm text-gray-500">Smart Applications</div>
             </div>
           </div>
-          <div class="slide-in" style="animation-delay: 0.2s">
-            <div class="relative">
-              <img
-                src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80"
-                alt="Team collaboration"
-                class="rounded-2xl shadow-2xl"
-              />
-              <div class="absolute -bottom-6 -left-6 glass p-6 rounded-xl">
-                <div class="flex items-center gap-3">
-                  <div
-                    class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center"
-                  >
-                    <svg
-                      class="w-6 h-6"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M5 13l4 4L19 7"
-                      ></path>
-                    </svg>
-                  </div>
-                  <div>
-                    <div class="font-semibold">Automated</div>
-                    <div class="text-sm text-gray-400">
-                      Applications Running
-                    </div>
+        </div>
+        <div class="slide-in" style="animation-delay: 0.2s">
+          <div class="relative">
+            <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=800&q=80" alt="Team collaboration"
+              class="rounded-2xl shadow-2xl" />
+            <div class="absolute -bottom-6 -left-6 glass p-6 rounded-xl">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 gradient-bg rounded-full flex items-center justify-center">
+                  <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+                  </svg>
+                </div>
+                <div>
+                  <div class="font-semibold">Automated</div>
+                  <div class="text-sm text-gray-400">
+                    Applications Running
                   </div>
                 </div>
               </div>
@@ -294,804 +268,545 @@
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- How It Works -->
-    <section id="how-it-works" class="py-24 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-reveal">
-          <h2 class="font-display text-5xl font-bold mb-4">
-            How It <span class="gradient-text">Works</span>
-          </h2>
-          <p class="text-xl text-gray-400">
-            Three intelligent layers working seamlessly together
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8">
-          <div
-            class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal"
-          >
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Automation Engine
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              We handle the boring stuff. Forms get filled automatically,
-              resumes attach themselves, and common questions get answered
-              instantly.
-            </p>
-          </div>
-
-          <div
-            class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal"
-            style="animation-delay: 0.1s"
-          >
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              AI-Powered Agents
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              When something new comes up, our AI thinks it through. It writes
-              custom answers and resumes using your experience and skills.
-            </p>
-          </div>
-
-          <div
-            class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal"
-            style="animation-delay: 0.2s"
-          >
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Always Improving
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              We learn from every application. When something doesn't work, we
-              fix it and make the system smarter for next time.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Features -->
-    <section
-      id="features"
-      class="py-24 px-6 bg-gradient-to-b from-transparent to-purple-900/10"
-    >
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-reveal">
-          <h2 class="font-display text-5xl font-bold mb-4">
-            Everything You <span class="gradient-text">Need</span>
-          </h2>
-          <p class="text-xl text-gray-400">
-            Powerful features to automate your job search
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">Custom Resumes</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Every job gets a tailored resume. Our AI highlights your most
-              relevant skills and experience for each position automatically.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">Cover Letters</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Get personalized cover letters for every application. Our AI
-              writes compelling letters that match your style and the job
-              requirements.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">Smart Answers</h3>
-            <p class="text-gray-400 leading-relaxed">
-              AI writes thoughtful answers to application questions in your
-              voice. It understands context and matches your experience to what
-              employers want.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Auto-Fill Forms
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              No more typing the same information over and over. We fill out
-              application forms automatically using your saved profile.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Track Everything
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              See all your applications in one place. Know which jobs you've
-              applied to, their status, and when employers respond.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Job Kanban Board
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              Organize your job search with a visual board. Move jobs through
-              stages: interested, applied, interviewing, offer.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Email Notifications
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              Get notified when employers respond. We process your emails and
-              alert you about interview requests and job updates.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Job Suggestions
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              We find jobs that match your skills and preferences. Get daily
-              suggestions tailored to your experience and location.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">Works 24/7</h3>
-            <p class="text-gray-400 leading-relaxed">
-              Your AI agent never sleeps. It applies to jobs, checks for
-              updates, and handles applications even when you're busy.
-            </p>
-          </div>
-
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
-            <div
-              class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6"
-            >
-              <svg
-                class="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"
-                ></path>
-              </svg>
-            </div>
-            <h3 class="font-display text-2xl font-bold mb-3">
-              Secure & Private
-            </h3>
-            <p class="text-gray-400 leading-relaxed">
-              Your data is encrypted and secure. We only use your information to
-              help you find jobs, nothing else.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pricing -->
-    <section id="pricing" class="py-24 px-6 relative">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16 scroll-reveal">
-          <h2 class="font-display text-5xl font-bold mb-4">
-            Simple <span class="gradient-text">Pricing</span>
-          </h2>
-          <p class="text-xl text-gray-400">
-            Choose the plan that works for you
-          </p>
-        </div>
-
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- Free Tier -->
-          <div
-            class="glass p-8 rounded-2xl hover-lift scroll-reveal relative border-2 border-yellow-500/50"
-          >
-            <div class="mb-6">
-              <div
-                class="inline-block bg-yellow-500/20 border border-yellow-500/50 px-4 py-2 rounded-full text-xs mb-3 font-semibold"
-              >
-                <span class="text-yellow-300">⚠️ SELECT PROFESSIONS ONLY</span>
-              </div>
-              <h3 class="font-display text-3xl font-bold mb-2">Free</h3>
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold gradient-text">$0</span>
-                <span class="text-gray-400">/month</span>
-              </div>
-              <div
-                class="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg"
-              >
-                <p class="text-sm font-semibold text-yellow-200 mb-1">
-                  Only available for:
-                </p>
-                <p class="text-sm text-yellow-300">
-                  • Software Developers<br />
-                  • Project Managers / SCRUM Masters
-                </p>
-              </div>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300">Simple job suggestions</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300"
-                  >Job kanban to get your jobs organised</span
-                >
-              </li>
-            </ul>
-            <a
-              href="https://app.jobsearch.works"
-              class="glass w-full py-3 rounded-full font-semibold text-center block hover:bg-white hover:bg-opacity-10 transition"
-            >
-              Get Started
-            </a>
-          </div>
-
-          <!-- Basic Tier -->
-          <div
-            class="glass p-8 rounded-2xl hover-lift scroll-reveal relative border-2 border-purple-500"
-          >
-            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
-              <span
-                class="gradient-bg px-4 py-1 rounded-full text-sm font-semibold"
-                >Popular</span
-              >
-            </div>
-            <div class="mb-6">
-              <h3 class="font-display text-3xl font-bold mb-2">Basic</h3>
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold gradient-text">$10</span>
-                <span class="text-gray-400">/month</span>
-              </div>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300">Smart job suggestions</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300">10 automated job applications</span>
-              </li>
-            </ul>
-            <a
-              href="https://app.jobsearch.works"
-              class="gradient-bg w-full py-3 rounded-full font-semibold text-center block hover:opacity-90 transition glow"
-            >
-              Get Started
-            </a>
-          </div>
-
-          <!-- Pro Tier -->
-          <div class="glass p-8 rounded-2xl hover-lift scroll-reveal relative">
-            <div class="mb-6">
-              <h3 class="font-display text-3xl font-bold mb-2">Pro</h3>
-              <div class="flex items-baseline gap-2">
-                <span class="text-4xl font-bold gradient-text">$20</span>
-                <span class="text-gray-400">/month</span>
-              </div>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300">Smart job suggestions</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300">50 automated job applications</span>
-              </li>
-              <li class="flex items-start gap-3">
-                <svg
-                  class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M5 13l4 4L19 7"
-                  ></path>
-                </svg>
-                <span class="text-gray-300"
-                  >Email processing & notifications</span
-                >
-              </li>
-            </ul>
-            <a
-              href="https://app.jobsearch.works"
-              class="glass w-full py-3 rounded-full font-semibold text-center block hover:bg-white hover:bg-opacity-10 transition"
-            >
-              Get Started
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CTA Section -->
-    <section id="contact" class="py-32 px-6 relative overflow-hidden">
-      <div class="absolute top-0 left-0 w-full h-full">
-        <div
-          class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20"
-        ></div>
-      </div>
-
-      <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
-        <h2 class="font-display text-6xl font-bold mb-6">
-          Ready to <span class="gradient-text">Get Started</span>?
+  <!-- How It Works -->
+  <section id="how-it-works" class="py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="font-display text-5xl font-bold mb-4">
+          How It <span class="gradient-text">Works</span>
         </h2>
-        <p class="text-xl text-gray-400 mb-12">
-          Start automating your job applications today
+        <p class="text-xl text-gray-400">
+          Three intelligent layers working seamlessly together
         </p>
+      </div>
 
-        <div class="flex justify-center mb-16">
-          <a
-            href="https://app.jobsearch.works"
-            class="gradient-bg px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition glow inline-block text-center"
-          >
-            Login to App
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Automation Engine
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            We handle the boring stuff. Forms get filled automatically,
+            resumes attach themselves, and common questions get answered
+            instantly.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal" style="animation-delay: 0.1s">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            AI-Powered Agents
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            When something new comes up, our AI thinks it through. It writes
+            custom answers and resumes using your experience and skills.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift feature-card scroll-reveal" style="animation-delay: 0.2s">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Always Improving
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            We learn from every application. When something doesn't work, we
+            fix it and make the system smarter for next time.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Features -->
+  <section id="features" class="py-24 px-6 bg-gradient-to-b from-transparent to-purple-900/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="font-display text-5xl font-bold mb-4">
+          Everything You <span class="gradient-text">Need</span>
+        </h2>
+        <p class="text-xl text-gray-400">
+          Powerful features to automate your job search
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">Custom Resumes</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Every job gets a tailored resume. Our AI highlights your most
+            relevant skills and experience for each position automatically.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">Cover Letters</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Get personalized cover letters for every application. Our AI
+            writes compelling letters that match your style and the job
+            requirements.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">Smart Answers</h3>
+          <p class="text-gray-400 leading-relaxed">
+            AI writes thoughtful answers to application questions in your
+            voice. It understands context and matches your experience to what
+            employers want.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Auto-Fill Forms
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            No more typing the same information over and over. We fill out
+            application forms automatically using your saved profile.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Track Everything
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            See all your applications in one place. Know which jobs you've
+            applied to, their status, and when employers respond.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Job Kanban Board
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            Organize your job search with a visual board. Move jobs through
+            stages: interested, applied, interviewing, offer.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Email Notifications
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            Get notified when employers respond. We process your emails and
+            alert you about interview requests and job updates.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Job Suggestions
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            We find jobs that match your skills and preferences. Get daily
+            suggestions tailored to your experience and location.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg-2 rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">Works 24/7</h3>
+          <p class="text-gray-400 leading-relaxed">
+            Your AI agent never sleeps. It applies to jobs, checks for
+            updates, and handles applications even when you're busy.
+          </p>
+        </div>
+
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal">
+          <div class="w-16 h-16 gradient-bg rounded-2xl flex items-center justify-center mb-6">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z">
+              </path>
+            </svg>
+          </div>
+          <h3 class="font-display text-2xl font-bold mb-3">
+            Secure & Private
+          </h3>
+          <p class="text-gray-400 leading-relaxed">
+            Your data is encrypted and secure. We only use your information to
+            help you find jobs, nothing else.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="py-24 px-6 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16 scroll-reveal">
+        <h2 class="font-display text-5xl font-bold mb-4">
+          Simple <span class="gradient-text">Pricing</span>
+        </h2>
+        <p class="text-xl text-gray-400">
+          Choose the plan that works for you
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <!-- Free Tier -->
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal relative border-2 border-yellow-500/50">
+          <div class="mb-6">
+            <div
+              class="inline-block bg-yellow-500/20 border border-yellow-500/50 px-4 py-2 rounded-full text-xs mb-3 font-semibold">
+              <span class="text-yellow-300">⚠️ SELECT PROFESSIONS ONLY</span>
+            </div>
+            <h3 class="font-display text-3xl font-bold mb-2">Free</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold gradient-text">$0</span>
+              <span class="text-gray-400">/month</span>
+            </div>
+            <div class="mt-3 p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-lg">
+              <p class="text-sm font-semibold text-yellow-200 mb-1">
+                Only available for:
+              </p>
+              <p class="text-sm text-yellow-300">
+                • Software Developers<br />
+                • Project Managers / SCRUM Masters
+              </p>
+            </div>
+          </div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">Simple job suggestions</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">Job kanban to get your jobs organised</span>
+            </li>
+          </ul>
+          <a href="https://app.jobsearch.works"
+            class="glass w-full py-3 rounded-full font-semibold text-center block hover:bg-white hover:bg-opacity-10 transition">
+            Get Started
           </a>
         </div>
 
-        <div class="grid md:grid-cols-3 gap-8 glass p-8 rounded-2xl">
-          <div>
-            <div class="text-3xl mb-3">🌐</div>
-            <div class="font-bold mb-2">Website</div>
-            <a
-              href="https://jobsearch.works"
-              class="text-purple-400 hover:text-purple-300 transition"
-              >jobsearch.works</a
-            >
+        <!-- Basic Tier -->
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal relative border-2 border-purple-500">
+          <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+            <span class="gradient-bg px-4 py-1 rounded-full text-sm font-semibold">Popular</span>
           </div>
-          <div>
-            <div class="text-3xl mb-3">💼</div>
-            <div class="font-bold mb-2">LinkedIn</div>
-            <a
-              href="https://linkedin.com/company/job-search-works"
-              class="text-purple-400 hover:text-purple-300 transition"
-              >Follow us</a
-            >
+          <div class="mb-6">
+            <h3 class="font-display text-3xl font-bold mb-2">Basic</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold gradient-text">$10</span>
+              <span class="text-gray-400">/month</span>
+            </div>
           </div>
-          <div>
-            <div class="text-3xl mb-3">💬</div>
-            <div class="font-bold mb-2">Discord</div>
-            <div class="text-gray-400 text-sm">Link after sign-up</div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">Smart job suggestions</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">10 automated job applications</span>
+            </li>
+          </ul>
+          <a href="https://app.jobsearch.works"
+            class="gradient-bg w-full py-3 rounded-full font-semibold text-center block hover:opacity-90 transition glow">
+            Get Started
+          </a>
+        </div>
+
+        <!-- Pro Tier -->
+        <div class="glass p-8 rounded-2xl hover-lift scroll-reveal relative">
+          <div class="mb-6">
+            <h3 class="font-display text-3xl font-bold mb-2">Pro</h3>
+            <div class="flex items-baseline gap-2">
+              <span class="text-4xl font-bold gradient-text">$20</span>
+              <span class="text-gray-400">/month</span>
+            </div>
           </div>
+          <ul class="space-y-4 mb-8">
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">Smart job suggestions</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">50 automated job applications</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-green-400 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor"
+                viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+              </svg>
+              <span class="text-gray-300">Email processing & notifications</span>
+            </li>
+          </ul>
+          <a href="https://app.jobsearch.works"
+            class="glass w-full py-3 rounded-full font-semibold text-center block hover:bg-white hover:bg-opacity-10 transition">
+            Get Started
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Footer -->
-    <footer class="py-12 px-6 border-t border-gray-800">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-4 gap-8 mb-8">
-          <div>
-            <div class="flex items-center space-x-2 mb-4">
-              <img src="logo.png" alt="JobSearch.Works Logo" class="h-8" />
-              <span class="font-display text-xl font-bold"
-                >JobSearch.Works</span
-              >
-            </div>
-            <p class="text-gray-400 text-sm">
-              Building the future of AI-powered job search
-            </p>
-          </div>
-          <div>
-            <h4 class="font-bold mb-4">Product</h4>
-            <ul class="space-y-2 text-gray-400 text-sm">
-              <li>
-                <a href="#how-it-works" class="hover:text-white transition"
-                  >How It Works</a
-                >
-              </li>
-              <li>
-                <a href="#features" class="hover:text-white transition"
-                  >Features</a
-                >
-              </li>
-              <li>
-                <a href="#pricing" class="hover:text-white transition"
-                  >Pricing</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold mb-4">Support</h4>
-            <ul class="space-y-2 text-gray-400 text-sm">
-              <li>
-                <a
-                  href="https://app.jobsearch.works"
-                  class="hover:text-white transition"
-                  >Login</a
-                >
-              </li>
-              <li>
-                <a href="#pricing" class="hover:text-white transition"
-                  >Pricing</a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://linkedin.com/company/job-search-works"
-                  class="hover:text-white transition"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >Contact us on LinkedIn</a
-                >
-              </li>
-            </ul>
-          </div>
-          <div>
-            <h4 class="font-bold mb-4">Resources</h4>
-            <ul class="space-y-2 text-gray-400 text-sm">
-              <li>
-                <a
-                  href="https://linkedin.com/company/job-search-works"
-                  class="hover:text-white transition"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  >LinkedIn</a
-                >
-              </li>
-            </ul>
-          </div>
+  <!-- CTA Section -->
+  <section id="contact" class="py-32 px-6 relative overflow-hidden">
+    <div class="absolute top-0 left-0 w-full h-full">
+      <div
+        class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-purple-600 rounded-full mix-blend-screen filter blur-3xl opacity-20">
+      </div>
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center relative z-10 scroll-reveal">
+      <h2 class="font-display text-6xl font-bold mb-6">
+        Ready to <span class="gradient-text">Get Started</span>?
+      </h2>
+      <p class="text-xl text-gray-400 mb-12">
+        Start automating your job applications today
+      </p>
+
+      <div class="flex justify-center mb-16">
+        <a href="https://app.jobsearch.works"
+          class="gradient-bg px-10 py-5 rounded-full font-bold text-lg hover:opacity-90 transition glow inline-block text-center">
+          Login to App
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8 glass p-8 rounded-2xl">
+        <div>
+          <div class="text-3xl mb-3">🌐</div>
+          <div class="font-bold mb-2">Website</div>
+          <a href="https://jobsearch.works" class="text-purple-400 hover:text-purple-300 transition">jobsearch.works</a>
         </div>
-        <div
-          class="pt-8 border-t border-gray-800 text-center text-gray-400 text-sm"
-        >
-          <p>
-            &copy; 2025 JobSearch.Works. All rights reserved. Built with 💜 by
-            our amazing team.
+        <div>
+          <div class="text-3xl mb-3">💼</div>
+          <div class="font-bold mb-2">LinkedIn</div>
+          <a href="https://linkedin.com/company/job-search-works"
+            class="text-purple-400 hover:text-purple-300 transition">Follow us</a>
+        </div>
+        <div>
+          <div class="text-3xl mb-3">💬</div>
+          <div class="font-bold mb-2">Discord</div>
+          <div class="text-gray-400 text-sm">Link after sign-up</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="py-12 px-6 border-t border-gray-800">
+    <div class="max-w-7xl mx-auto">
+      <div class="grid md:grid-cols-4 gap-8 mb-8">
+        <div>
+          <div class="flex items-center space-x-2 mb-4">
+            <img src="logo.png" alt="JobSearch.Works Logo" class="h-8" />
+            <span class="font-display text-xl font-bold">JobSearch.Works</span>
+          </div>
+          <p class="text-gray-400 text-sm">
+            Building the future of AI-powered job search
           </p>
         </div>
+        <div>
+          <h4 class="font-bold mb-4">Product</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li>
+              <a href="#how-it-works" class="hover:text-white transition">How It Works</a>
+            </li>
+            <li>
+              <a href="#features" class="hover:text-white transition">Features</a>
+            </li>
+            <li>
+              <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Support</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li>
+              <a href="https://app.jobsearch.works" class="hover:text-white transition">Login</a>
+            </li>
+            <li>
+              <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </li>
+            <li>
+              <a href="https://linkedin.com/company/job-search-works" class="hover:text-white transition"
+                target="_blank" rel="noopener noreferrer">Contact us on LinkedIn</a>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="font-bold mb-4">Resources</h4>
+          <ul class="space-y-2 text-gray-400 text-sm">
+            <li>
+              <a href="https://linkedin.com/company/job-search-works" class="hover:text-white transition"
+                target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </li>
+          </ul>
+        </div>
       </div>
-    </footer>
+      <div class="pt-8 border-t border-gray-800 text-center text-gray-400 text-sm">
+        <p>
+          &copy; 2025 JobSearch.Works. All rights reserved. Built with 💜 by
+          our amazing team.
+        </p>
+      </div>
+    </div>
+  </footer>
 
-    <script>
-      // Scroll reveal animation
-      const observerOptions = {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      };
+  <script>
+    // Scroll reveal animation
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: "0px 0px -50px 0px",
+    };
 
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-          }
-        });
-      }, observerOptions);
-
-      document.querySelectorAll(".scroll-reveal").forEach((el) => {
-        observer.observe(el);
-      });
-
-      // Smooth scroll for navigation
-      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
-        anchor.addEventListener("click", function (e) {
-          e.preventDefault();
-          const target = document.querySelector(this.getAttribute("href"));
-          if (target) {
-            target.scrollIntoView({
-              behavior: "smooth",
-              block: "start",
-            });
-          }
-        });
-      });
-
-      // Add scroll effect to navigation
-      let lastScroll = 0;
-      const nav = document.querySelector("nav");
-
-      window.addEventListener("scroll", () => {
-        const currentScroll = window.pageYOffset;
-
-        if (currentScroll <= 0) {
-          nav.style.transform = "translateY(0)";
-        } else if (currentScroll > lastScroll && currentScroll > 100) {
-          nav.style.transform = "translateY(-100%)";
-        } else {
-          nav.style.transform = "translateY(0)";
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("active");
         }
-
-        lastScroll = currentScroll;
       });
+    }, observerOptions);
 
-      nav.style.transition = "transform 0.3s ease";
-    </script>
-  </body>
+    document.querySelectorAll(".scroll-reveal").forEach((el) => {
+      observer.observe(el);
+    });
+
+    // Smooth scroll for navigation
+    document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+      anchor.addEventListener("click", function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute("href"));
+        if (target) {
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+          });
+        }
+      });
+    });
+
+    // Add scroll effect to navigation
+    let lastScroll = 0;
+    const nav = document.querySelector("nav");
+
+    window.addEventListener("scroll", () => {
+      const currentScroll = window.pageYOffset;
+
+      if (currentScroll <= 0) {
+        nav.style.transform = "translateY(0)";
+      } else if (currentScroll > lastScroll && currentScroll > 100) {
+        nav.style.transform = "translateY(-100%)";
+      } else {
+        nav.style.transform = "translateY(0)";
+      }
+
+      lastScroll = currentScroll;
+    });
+
+    nav.style.transition = "transform 0.3s ease";
+  </script>
+</body>
+
 </html>
